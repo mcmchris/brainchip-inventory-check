@@ -11,7 +11,7 @@ from scipy.special import softmax
 from flask import Flask, render_template, Response
 from picamera2 import MappedArray, Picamera2, Preview
 
-normalSize = (224 , 224)
+normalSize = (640 , 480)
 lowresSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
@@ -141,8 +141,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = 224/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = 224/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = normalSize[0]/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = normalSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
