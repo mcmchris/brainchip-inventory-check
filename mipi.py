@@ -220,12 +220,12 @@ def gen_frames():
 def get_inference_speed():
     while True:
         yield f"data:{inference_speed:.2f}\n\n"
-        time.sleep(0.1)
+        time.sleep(1)
 
 def get_power_consumption():
     while True:
         yield "data:" + str(power_consumption) + "\n\n"
-        time.sleep(0.1)
+        time.sleep(1)
 
 @app.route('/video_feed')
 def video_feed():
