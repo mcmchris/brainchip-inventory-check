@@ -11,7 +11,7 @@ from scipy.special import softmax
 from flask import Flask, render_template, Response
 from picamera2 import MappedArray, Picamera2, Preview
 
-normalSize = (1920 , 1080)
+normalSize = (224 , 224)
 lowresSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
@@ -19,7 +19,7 @@ app = Flask(__name__, static_folder='templates/assets')
 EI_CLASSIFIER_INPUT_WIDTH  = 224
 EI_CLASSIFIER_INPUT_HEIGHT = 224
 EI_CLASSIFIER_LABEL_COUNT = 1
-EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.95
+EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.99
 categories = ['piece']
 inference_speed = 0
 power_consumption = 0
@@ -141,8 +141,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = 1920/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = 1080/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = 224/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = 224/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
