@@ -20,7 +20,7 @@ EI_CLASSIFIER_INPUT_WIDTH  = 224
 EI_CLASSIFIER_INPUT_HEIGHT = 224
 EI_CLASSIFIER_LABEL_COUNT = 1
 EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.95
-categories = ['Vehicle']
+categories = ['piece']
 inference_speed = 0
 power_consumption = 0
 
@@ -243,7 +243,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    model_file = './model/ei-object-detection-metatf-model.fbz'
+    model_file = './model/akida-model.fbz'
 
     queueOut = Queue(maxsize = 24)
 
