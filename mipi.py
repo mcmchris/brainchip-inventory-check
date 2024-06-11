@@ -153,7 +153,7 @@ def inferencing(model_file, queueOut):
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
     picam2.start_preview(Preview.NULL)
     config = picam2.create_preview_configuration(main={"size": normalSize},
-                                                 lores={"size": lowresSize, "format": "YUV420"})
+                                                 lores={"size": normalSize, "format": "YUV420"})
     picam2.configure(config)
 
     stride = picam2.stream_configuration("lores")["stride"]
