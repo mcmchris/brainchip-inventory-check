@@ -243,7 +243,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    model_file = './model/akida-model.fbz'
+    model_file = './model/akida_model.fbz'
 
     queueOut = Queue(maxsize = 24)
 
