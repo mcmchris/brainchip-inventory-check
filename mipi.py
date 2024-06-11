@@ -11,7 +11,7 @@ from scipy.special import softmax
 from flask import Flask, render_template, Response
 from picamera2 import MappedArray, Picamera2, Preview
 
-normalSize = (640 , 480)
+normalSize = (1920 , 1080)
 lowresSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
