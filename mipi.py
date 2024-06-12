@@ -156,7 +156,7 @@ def inferencing(model_file, queueOut):
     config = picam2.create_preview_configuration(main={"size": normalSize},
                                                  lores={"size": normalSize, "format": "YUV420"})
     picam2.configure(config)
-    print(picam2.video_configuration)
+    #print(picam2.video_configuration)
     stride = picam2.stream_configuration("lores")["stride"]
     #picam2.post_callback = DrawRectangles
 
@@ -194,7 +194,7 @@ def inferencing(model_file, queueOut):
         #print(akida_model.statistics)
 
         result = fill_result_struct_f32_fomo(pred, int(EI_CLASSIFIER_INPUT_WIDTH/8), int(EI_CLASSIFIER_INPUT_HEIGHT/8))
-
+        print(result['bounding_boxes'])
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
