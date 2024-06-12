@@ -26,7 +26,7 @@ EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.99
 categories = ['piece']
 inference_speed = 0
 power_consumption = 0
-
+piece_count = 0
 
 def ei_cube_check_overlap(c, x, y, width, height, confidence):
     is_overlapping = not ((c['x'] + c['width'] < x) or (c['y'] + c['height'] < y) or (c['x'] > x + width) or (c['y'] > y + height))
@@ -194,11 +194,13 @@ def inferencing(model_file, queueOut):
         #print(akida_model.statistics)
 
         result = fill_result_struct_f32_fomo(pred, int(EI_CLASSIFIER_INPUT_WIDTH/8), int(EI_CLASSIFIER_INPUT_HEIGHT/8))
-        print(result['bounding_boxes'])
+        
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
-
+            piece_count = bb
+        
+        print(piece_count)
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
