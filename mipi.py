@@ -149,6 +149,7 @@ def inferencing(model_file, queueOut):
 
     global inference_speed
     global power_consumption
+    global piece_count
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
@@ -200,7 +201,7 @@ def inferencing(model_file, queueOut):
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
         
         
-        print(len(result['bounding_boxes']))
+        piece_count = f'{len(result['bounding_boxes'])}
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
@@ -230,6 +231,11 @@ def get_power_consumption():
         yield "data:" + str(power_consumption) + "\n\n"
         time.sleep(1)
 
+def get_piece_count():
+    while True:
+        yield "data:" + str(piece_count) + "\n\n"
+        time.sleep(1)
+
 @app.route('/video_feed')
 def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
@@ -242,6 +248,10 @@ def model_inference_speed():
 @app.route('/model_power_consumption')
 def model_power_consumption():
 	return Response(get_power_consumption(), mimetype= 'text/event-stream')
+
+@app.route('/model_piece_count')
+def model_piece_count():
+	return Response(get_piece_count(), mimetype= 'text/event-stream')
 
 @app.route('/')
 def index():
