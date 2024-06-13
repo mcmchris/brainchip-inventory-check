@@ -22,7 +22,7 @@ app = Flask(__name__, static_folder='templates/assets')
 EI_CLASSIFIER_INPUT_WIDTH  = 224
 EI_CLASSIFIER_INPUT_HEIGHT = 224
 EI_CLASSIFIER_LABEL_COUNT = 1
-EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.99
+EI_CLASSIFIER_OBJECT_DETECTION_THRESHOLD = 0.90
 categories = ['piece']
 inference_speed = 0
 power_consumption = 0
@@ -202,7 +202,7 @@ def inferencing(model_file, queueOut):
         
         
         piece_count = len(result['bounding_boxes'])
-        print(piece_count)
+        #print(piece_count)
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
