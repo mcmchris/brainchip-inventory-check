@@ -192,7 +192,7 @@ def inferencing(model_file, queueOut):
             active_power += event.power
     
         power_consumption = f'{(active_power/len(power_events)) - floor_power : 0.2f}' 
-        #print(akida_model.statistics)
+        print(akida_model.statistics)
 
         result = fill_result_struct_f32_fomo(pred, int(EI_CLASSIFIER_INPUT_WIDTH/8), int(EI_CLASSIFIER_INPUT_HEIGHT/8))
         
