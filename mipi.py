@@ -234,7 +234,7 @@ def get_power_consumption():
 
 def get_piece_count():
     while True:
-        yield f"data:{piece_count:.2f}\n\n"
+        yield "data:" + str(piece_count) + "\n\n"
         time.sleep(1)
 
 @app.route('/video_feed')

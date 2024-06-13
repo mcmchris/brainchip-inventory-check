@@ -51,6 +51,10 @@
     sourcePeople.onmessage = function (event) {
       document.getElementById("power_consumption").textContent = event.data
     }
+    var sourceCount = new EventSource("/model_piece_count");
+    sourceCount.onmessage = function (event) {
+      document.getElementById("piece_count").textContent = event.data
+    }
   </script>
 
 </body>
