@@ -201,7 +201,7 @@ def inferencing(model_file, queueOut):
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
         
         
-        piece_count = f'{len(result['bounding_boxes'])}
+        piece_count = len(result['bounding_boxes'])
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
