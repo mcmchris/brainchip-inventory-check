@@ -27,6 +27,7 @@ categories = ['piece']
 inference_speed = 0
 power_consumption = 0
 piece_count = 0
+akida_fps = 0
 
 def ei_cube_check_overlap(c, x, y, width, height, confidence):
     is_overlapping = not ((c['x'] + c['width'] < x) or (c['y'] + c['height'] < y) or (c['x'] > x + width) or (c['y'] > y + height))
@@ -150,6 +151,7 @@ def inferencing(model_file, queueOut):
     global inference_speed
     global power_consumption
     global piece_count
+    global akida_fps
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
@@ -186,14 +188,15 @@ def inferencing(model_file, queueOut):
         pred = softmax(logits, axis=-1).squeeze()
 
         floor_power = device.soc.power_meter.floor
-        #power_events = device.soc.power_meter.events()
+        power_events = device.soc.power_meter.events()
         
         active_power = 0
-        #for event in power_events:
-        #    active_power += event.power
+        for event in power_events:
+            active_power += event.power
     
-        #power_consumption = f'{(active_power/len(power_events)) - floor_power : 0.2f}' 
-        power_consumption = floor_power
+        power_consumption = f'{(active_power/len(power_events)) - floor_power : 0.2f}' 
+        akida_fps = akida_model.statistics
+        
         #print(akida_model.statistics)
 
         result = fill_result_struct_f32_fomo(pred, int(EI_CLASSIFIER_INPUT_WIDTH/8), int(EI_CLASSIFIER_INPUT_HEIGHT/8))
@@ -239,6 +242,11 @@ def get_piece_count():
         yield "data:" + str(piece_count) + "\n\n"
         time.sleep(1)
 
+def get_fps():
+    while True:
+        yield "data:" + str(akida_fps) + "\n\n"
+        time.sleep(1)
+
 @app.route('/video_feed')
 def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
@@ -255,6 +263,10 @@ def model_power_consumption():
 @app.route('/model_piece_count')
 def model_piece_count():
 	return Response(get_piece_count(), mimetype= 'text/event-stream')
+
+@app.route('/model_fps')
+def model_fps():
+	return Response(get_fps(), mimetype= 'text/event-stream')
 
 @app.route('/')
 def index():

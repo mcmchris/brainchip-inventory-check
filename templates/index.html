@@ -39,6 +39,9 @@
       <div class="col-lg-6">
         <p class="h4">Pieces Count: <span id="piece_count"></span></p>
       </div>
+      <div class="col-lg-6">
+        <p class="h4">FPS: <span id="akida_fps"></span></p>
+      </div>
     </div>
   </div>
 
@@ -54,6 +57,10 @@
     var sourceCount = new EventSource("/model_piece_count");
     sourceCount.onmessage = function (event) {
       document.getElementById("piece_count").textContent = event.data
+    }
+    var Fps = new EventSource("/model_fps");
+    Fps.onmessage = function (event) {
+      document.getElementById("akida_fps").textContent = event.data
     }
   </script>
 
