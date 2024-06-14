@@ -179,7 +179,7 @@ def inferencing(model_file, queueOut):
         input_data = np.expand_dims(resized_img, axis=0)
         
         start_time = time.perf_counter()
-        logits = akida_model.predict(resized_img)
+        logits = akida_model.predict(input_data)
         end_time = time.perf_counter()
         inference_speed = (end_time - start_time) * 1000
 
