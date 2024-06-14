@@ -15,7 +15,7 @@ from picamera2 import MappedArray, Picamera2, Preview
 normalSize = (640 , 480)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
-lowresSize = (192, 224)
+lowresSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
         
@@ -174,12 +174,12 @@ def inferencing(model_file, queueOut):
         #grey = frame[:stride * lowresSize[1]].reshape((lowresSize[1], stride))
         img = cv2.cvtColor(frame, cv2.COLOR_YUV420p2RGB)
 
-        #resized_img = cv2.resize(img, resize_dim)
+        resized_img = cv2.resize(img, resize_dim)
         
-        input_data = np.expand_dims(img, axis=0)
+        input_data = np.expand_dims(resized_img, axis=0)
         
         start_time = time.perf_counter()
-        logits = akida_model.predict(input_data)
+        logits = akida_model.predict(resized_img)
         end_time = time.perf_counter()
         inference_speed = (end_time - start_time) * 1000
 
