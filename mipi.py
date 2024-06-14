@@ -15,7 +15,7 @@ from picamera2 import MappedArray, Picamera2, Preview
 normalSize = (640 , 480)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
-lowresSize = (224, 224)
+lowresSize = (224, 192)
 
 app = Flask(__name__, static_folder='templates/assets')
         
