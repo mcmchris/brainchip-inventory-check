@@ -14,10 +14,10 @@ if not matrix in i2c.scan():
 
 def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
-    result = bytearray(1)
+    result = bytearray(2)
     i2c.readfrom_into(matrix, result)
     #print("Seeed Matrix ID: ", hex(int.from_bytes(result,"big")))
     print(result)
-    
+
 if __name__ == "__main__":
     getDeviceVID()
