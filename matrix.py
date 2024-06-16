@@ -23,7 +23,7 @@ def getDeviceVID():
 if __name__ == "__main__":
     VID = getDeviceVID()
     print(VID)
-    if VID != 0x8628:
+    if VID != '0x8628':
         print("Could not detect led matrix!!!")
         sys.exit()
     
