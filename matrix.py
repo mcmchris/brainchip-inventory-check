@@ -48,3 +48,5 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
+
+    displayColorBlock()
