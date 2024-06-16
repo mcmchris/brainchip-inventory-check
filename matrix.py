@@ -36,6 +36,7 @@ def displayColorBlock(rgb, duration_time, forever_flag):
     data[5] = ((duration_time >> 8) & 0xff)
     data[6] = forever_flag
     result = [hex(i) for i in data]
+    i2c.writeto(matrix, bytes(result))
     print(result)
 
 
@@ -49,5 +50,5 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
-    RGB = (255 << 16) | (255 << 8) | 255
+    RGB = (255 << 16) | (0 << 8) | 0
     displayColorBlock(RGB,0,True)
