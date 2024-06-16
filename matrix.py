@@ -36,7 +36,7 @@ def displayColorBlock(rgb, duration_time, forever_flag):
     data[5] = ((duration_time >> 8) & 0xff)
     data[6] = forever_flag
     result = [hex(i) for i in data]
-    i2c.writeto(matrix, result)
+    i2c.writeto(matrix, bytes(data))
     print(result)
 
 
