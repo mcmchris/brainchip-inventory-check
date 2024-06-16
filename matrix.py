@@ -48,5 +48,5 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
-
-    displayColorBlock()
+    RGB = (255 << 16) | (255 << 8) | 255
+    displayColorBlock(RGB,0,True)
