@@ -4,11 +4,13 @@ import busio
 
 i2c = busio.I2C(board.SCL, board.SDA)
 
-print("I2C devices found: ", [hex(i) for i in i2c.scan()])
+scan_result = i2c.scan()
+
+print("I2C devices found: ", [hex(i) for i in scan_result])
 
 matrix = 0x65
 
-if not matrix in i2c.scan():
+if not matrix in scan_result:
     print("Could not find Seeed Matrix")
     sys.exit()
 
@@ -22,7 +24,6 @@ def getDeviceVID():
 
 if __name__ == "__main__":
     VID = getDeviceVID()
-    print(VID)
     if VID != '0x8628':
         print("Could not detect led matrix!!!")
         sys.exit()
