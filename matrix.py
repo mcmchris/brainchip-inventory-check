@@ -27,7 +27,7 @@ def stopDisplay():
 
 
 def displayColorBlock(rgb, duration_time, forever_flag):
-    data= {0,}
+    data=0
     data[0] = 0x0d #I2C_CMD_DISP_COLOR_BLOCK
     data[1] = (rgb >> 16) & 0xff
     data[2] = (rgb >> 8) & 0xff
