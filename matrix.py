@@ -18,7 +18,7 @@ def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
     result = bytearray(2)
     i2c.readfrom_into(matrix, result)
-    vid = hex(int.from_bytes(result,"big"))
+    vid = hex(int.from_bytes(result))
     print("Seeed Matrix ID: ", vid)
     return vid
 
