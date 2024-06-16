@@ -16,7 +16,7 @@ if not matrix in scan_result:
 
 def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
-    result = bytearray(2)
+    result = bytearray(1)
     i2c.readfrom_into(matrix, result)
     vid = hex(int.from_bytes(result))
     print("Seeed Matrix ID: ", vid)
@@ -42,7 +42,7 @@ def displayColorBlock(rgb, duration_time, forever_flag):
 
 if __name__ == "__main__":
     VID = getDeviceVID()
-    if VID != '0x2886':
+    if VID != '0x86':
         print("Could not detect led matrix!!!")
         sys.exit()
     
