@@ -35,7 +35,8 @@ def displayColorBlock(rgb, duration_time, forever_flag):
     data[4] = (duration_time & 0xff)
     data[5] = ((duration_time >> 8) & 0xff)
     data[6] = forever_flag
-    print(hex(data))
+    result = [hex(i) for i in data]
+    print(result)
 
 
 
