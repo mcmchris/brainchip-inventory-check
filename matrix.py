@@ -16,8 +16,14 @@ def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
     result = bytearray(2)
     i2c.readfrom_into(matrix, result)
-    print("Seeed Matrix ID: ", hex(int.from_bytes(result,"big")))
-    #print(result)
+    vid = hex(int.from_bytes(result,"big"))
+    print("Seeed Matrix ID: ", vid)
+    return vid
 
 if __name__ == "__main__":
-    getDeviceVID()
+    VID = getDeviceVID()
+    if VID != 0x8628:
+        print("Could not detect led matrix!!!")
+        sys.exit()
+    
+    print("Matrix init success")
