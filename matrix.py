@@ -42,7 +42,7 @@ def displayColorBlock(rgb, duration_time, forever_flag):
 
 if __name__ == "__main__":
     VID = getDeviceVID()
-    if VID != '0x8628':
+    if VID != '0x2886':
         print("Could not detect led matrix!!!")
         sys.exit()
     
