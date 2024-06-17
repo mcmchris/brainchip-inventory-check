@@ -113,8 +113,8 @@ if __name__ == "__main__":
 
     picTwo = [0]*64
     
-    picTwo[xytoIndex(5,5)] = 0x255
-    
+    picTwo[xytoIndex(5,5)] = 0x95
+
     displayFrames(picTwo, 2000, True, 1)
 
     time.sleep(2)
