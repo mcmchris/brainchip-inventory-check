@@ -98,7 +98,7 @@ if __name__ == "__main__":
                 0x55, 0x55, 0x55, 0x55, 0x35, 0x55, 0x55, 0x55,
                 ]
 
-    displayFrames(pic8, 2000, True, 1)
+    displayFrames(pic8, 2000, True, 2)
 
     time.sleep(2)
 
