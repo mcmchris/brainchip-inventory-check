@@ -99,3 +99,7 @@ if __name__ == "__main__":
                 ]
 
     displayFrames(pic8, 2000, True, 1)
+
+    time.sleep(2)
+
+    stopDisplay()
