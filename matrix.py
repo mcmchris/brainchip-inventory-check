@@ -1,6 +1,7 @@
 import sys
 import board
 import busio
+import time
 
 i2c = busio.I2C(board.SCL, board.SDA)
 
@@ -39,7 +40,28 @@ def displayColorBlock(rgb, duration_time, forever_flag):
     i2c.writeto(matrix, bytes(data))
     #print(result)
 
+def displayFrames(buffer, duration_time, forever_flag, frames_number):
+    data=[0]*72
+    if frames_number > 5:
+        frames_number = 5
+    elif frames_number == 0:
+        return
+    
+    data[0] = 0x05 #I2C_CMD_DISP_CUSTOM
+    data[1] = 0x0
+    data[2] = 0x0
+    data[3] = 0x0
+    data[4] = frames_number
 
+    for i in range(frames_number-1):
+        data[5] = i
+        for j in range(64):
+            data[8+j] = buffer[j+i*64]
+        if i == 0:
+            data[1] = (duration_time & 0xff)
+            data[2] = ((duration_time >> 8) & 0xff)
+            data[3] = forever_flag
+        i2c.writeto(matrix, bytes(data))
 
 if __name__ == "__main__":
     VID = getDeviceVID()
@@ -50,5 +72,21 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
+
     RGB = (0 << 16) | (255 << 8) | 0
+
     displayColorBlock(RGB,0,True)
+
+    time.sleep(2)
+
+    pic8[64] = {0x25, 0x35, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
+                0x55, 0x25, 0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
+                0x55, 0x55, 0x25, 0x55, 0x55, 0x55, 0x55, 0x55,
+                0x55, 0x55, 0x55, 0x25, 0x55, 0x55, 0x55, 0x55,
+                0x55, 0x55, 0x95, 0x55, 0x25, 0x55, 0x55, 0x55,
+                0x55, 0x55, 0x55, 0x55, 0x55, 0x25, 0x55, 0x55,
+                0x55, 0x55, 0x75, 0x55, 0x55, 0x55, 0x25, 0x55,
+                0x55, 0x55, 0x55, 0x55, 0x35, 0x55, 0x55, 0x55,
+                }
+
+    displayFrames(pic8, 2000, True, 1)
