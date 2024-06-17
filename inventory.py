@@ -217,7 +217,7 @@ def inferencing(model_file, queueOut):
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
             
             x = bb['x']
-            y = bb['y']
+            y = 224 - bb['y']
 
             x = int(x*8/224)
             y = int(y*8/224)
