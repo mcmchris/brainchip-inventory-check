@@ -218,12 +218,10 @@ def inferencing(model_file, queueOut):
             
             x = bb['x']
             y = bb['y']
-
-            print(x,y)
-
+            
             x = int(x/224)
             y = int(y/224)
-                
+            print(x,y)
             picTwo[xytoIndex(x,y)] = 55
         
         displayFrames(picTwo, 500, True, 1)
