@@ -99,7 +99,8 @@ if __name__ == "__main__":
 
     picTwo = [255]*64
     
-    picTwo[xytoIndex(5,5)] = 55
+    for i in range(7):
+        picTwo[xytoIndex(i,i)] = 55
 
     displayFrames(picTwo, 2000, True, 1)
 
