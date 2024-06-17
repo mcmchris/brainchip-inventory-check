@@ -72,7 +72,9 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
-
+    
+    time.sleep(2)
+    
     RGB = (0 << 16) | (255 << 8) | 0
 
     displayColorBlock(RGB,0,True)
