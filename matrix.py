@@ -65,10 +65,7 @@ def displayFrames(buffer, duration_time, forever_flag, frames_number):
         result = [hex(i) for i in data]
         print(result)
         i2c.writeto(matrix, bytes(data))
-        time.sleep(0.001)
-        i2c.writeto(matrix, bytes(data+24))
-        time.sleep(0.001)
-        i2c.writeto(matrix, bytes(data+48))
+
 
 if __name__ == "__main__":
     VID = getDeviceVID()
