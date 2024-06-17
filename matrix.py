@@ -62,6 +62,10 @@ def displayFrames(buffer, duration_time, forever_flag, frames_number):
             data[2] = ((duration_time >> 8) & 0xff)
             data[3] = forever_flag
         i2c.writeto(matrix, bytes(data))
+        time.sleep(0.001)
+        i2c.writeto(matrix, bytes(data+24))
+        time.sleep(0.001)
+        i2c.writeto(matrix, bytes(data+48))
 
 if __name__ == "__main__":
     VID = getDeviceVID()
@@ -72,7 +76,7 @@ if __name__ == "__main__":
     print("Matrix init success")
 
     stopDisplay()
-    
+
     time.sleep(2)
     
     RGB = (0 << 16) | (255 << 8) | 0
