@@ -53,7 +53,7 @@ def displayFrames(buffer, duration_time, forever_flag, frames_number):
     data[3] = 0x0
     data[4] = frames_number
 
-    for i in range(frames_number-1):
+    for i in range(frames_number):
         data[5] = i
         for j in range(64):
             data[8+j] = buffer[j+i*64]
@@ -98,7 +98,7 @@ if __name__ == "__main__":
                 0x55, 0x55, 0x55, 0x55, 0x35, 0x55, 0x55, 0x55,
                 ]
 
-    displayFrames(pic8, 2000, True, 2)
+    displayFrames(pic8, 2000, True, 1)
 
     time.sleep(2)
 
