@@ -359,7 +359,7 @@ if __name__ == '__main__':
 
     scan_result = i2c.scan()
 
-    while scan_result == 0:
+    while len(scan_result) == 0:
         scan_result = i2c.scan()
 
     print("I2C devices found: ", [hex(i) for i in scan_result])
