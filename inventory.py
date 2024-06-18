@@ -356,10 +356,10 @@ def index():
 if __name__ == '__main__':
 
     model_file = './model/akida_model.fbz'
-    
+
     scan_result = i2c.scan()
 
-    while scan_result == '':
+    while scan_result == 0:
         scan_result = i2c.scan()
 
     print("I2C devices found: ", [hex(i) for i in scan_result])
