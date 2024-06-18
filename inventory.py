@@ -25,7 +25,7 @@ lowresSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
 
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = busio.I2C(board.SCL, board.SDA, 400000)
         
 EI_CLASSIFIER_INPUT_WIDTH  = 224
 EI_CLASSIFIER_INPUT_HEIGHT = 224
