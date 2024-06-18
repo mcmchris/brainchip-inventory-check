@@ -357,7 +357,8 @@ if __name__ == '__main__':
 
     model_file = './model/akida_model.fbz'
 
-    scan_result = i2c.scan()
+    while scan_result == '':
+        scan_result = i2c.scan()
 
     print("I2C devices found: ", [hex(i) for i in scan_result])
 
