@@ -356,6 +356,8 @@ def index():
 if __name__ == '__main__':
 
     model_file = './model/akida_model.fbz'
+    
+    scan_result = i2c.scan()
 
     while scan_result == '':
         scan_result = i2c.scan()
