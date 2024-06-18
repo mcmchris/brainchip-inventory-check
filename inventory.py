@@ -11,6 +11,7 @@ import numpy as np
 import board
 import busio
 import time
+import os
 
 from queue import Queue
 from scipy.special import softmax
@@ -356,11 +357,10 @@ def index():
 if __name__ == '__main__':
 
     model_file = './model/akida_model.fbz'
+    
+    os.system("i2cdetect -y 1") # this command scan and wakes up the I2C peripheral
 
     scan_result = i2c.scan()
-
-    while len(scan_result) == 0:
-        scan_result = i2c.scan()
 
     print("I2C devices found: ", [hex(i) for i in scan_result])
 
