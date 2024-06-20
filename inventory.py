@@ -176,7 +176,7 @@ def inferencing(model_file, queueOut):
 
     picam2.start()
 
-    
+    printit()
         
     resize_dim = (EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT)
 
