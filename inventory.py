@@ -162,7 +162,7 @@ def inferencing(model_file, queueOut):
     global power_consumption
     global piece_count
     global akida_fps
-    global picTwo
+
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
@@ -176,7 +176,7 @@ def inferencing(model_file, queueOut):
 
     picam2.start()
 
-    printit()
+    
         
     resize_dim = (EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT)
 
@@ -215,8 +215,7 @@ def inferencing(model_file, queueOut):
         
         #print(result)
         
-        
-
+  
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
@@ -242,8 +241,7 @@ def inferencing(model_file, queueOut):
 
 def printit():
   threading.Timer(5.0, printit).start()
-  displayFrames(picTwo, 500, True, 1)    
-  picTwo = [255]*64   
+  displayFrames(picTwo, 500, False, 1)       
         
 def gen_frames():
     #resize_stream = (640, 480)
