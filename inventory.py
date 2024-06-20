@@ -19,7 +19,7 @@ from flask import Flask, render_template, Response
 from picamera2 import MappedArray, Picamera2, Preview
 
 # Preview Resolution
-normalSize = (720 , 720)
+normalSize = (1080 , 720)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
