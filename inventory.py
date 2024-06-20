@@ -214,21 +214,21 @@ def inferencing(model_file, queueOut):
         
         #print(result)
         picTwo = [255]*64
-        med = 0
+  
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
+
             x = bb['x']
             y = 224 - bb['y']
-            med = med + 1
-            print(med)
+
             x = int(x*8/224)
             y = int(y*8/224)
 
             picTwo[xytoIndex(x,y)] = 55
              
         
-        displayFrames(picTwo, 500, True, 1)
+        displayFrames(picTwo, 1000, True, 1)
 
         piece_count = result['bounding_boxes_count']
         #piece_count = len(result['bounding_boxes'])
@@ -378,7 +378,7 @@ if __name__ == '__main__':
 
     queueOut = Queue(maxsize = 24)
 
-    t2 = threading.Thread(target=inferencing, args=(model_file,queueOut))
+    t2 = threading.Thread(target=inferencing, args=(model_file, queueOut))
     t2.start()
     app.run(host = '0.0.0.0', port = 8080)
     t2.join()
