@@ -38,6 +38,8 @@ power_consumption = 0
 piece_count = 0
 akida_fps = 0
 med = 0
+xi = 0
+yi = 0
 
 def ei_cube_check_overlap(c, x, y, width, height, confidence):
     is_overlapping = not ((c['x'] + c['width'] < x) or (c['y'] + c['height'] < y) or (c['x'] > x + width) or (c['y'] > y + height))
@@ -162,7 +164,6 @@ def inferencing(model_file, queueOut):
     global power_consumption
     global piece_count
     global akida_fps
-    global med
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
