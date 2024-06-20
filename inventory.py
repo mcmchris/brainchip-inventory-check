@@ -240,7 +240,7 @@ def inferencing(model_file, queueOut):
             queueOut.put(img)
 
 def printit():
-  threading.Timer(5.0, printit).start()
+  threading.Timer(0.5, printit).start()
   displayFrames(picTwo, 500, False, 1)       
         
 def gen_frames():
