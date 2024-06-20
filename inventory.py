@@ -216,17 +216,16 @@ def inferencing(model_file, queueOut):
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
+            x = bb['x']
+            y = 224 - bb['y']
             if med < 10:
-                x = bb['x']
-                y = 224 - bb['y']
-
-                x = int(x*8/224)
-                y = int(y*8/224)
+                x += int(x*8/224)
+                y += int(y*8/224)
                 med = med+1
             else:
             #print(x,y)
                 med = 0
-                picTwo[xytoIndex(x,y)] = 55
+                picTwo[xytoIndex(x/10,y/10)] = 55
         
         displayFrames(picTwo, 500, True, 1)
 
