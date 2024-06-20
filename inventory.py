@@ -162,7 +162,7 @@ def inferencing(model_file, queueOut):
     global power_consumption
     global piece_count
     global akida_fps
-    global med
+
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
@@ -214,29 +214,20 @@ def inferencing(model_file, queueOut):
         
         #print(result)
         picTwo = [255]*64
-        x_array = [0]*10
-        y_array = [0]*10
-
+        
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
             x = bb['x']
             y = 224 - bb['y']
+            print(bb)
+            x = int(x*8/224)
+            y = int(y*8/224)
 
-            x_array[int(bb)] = int(x*8/224)
-            y_array[int(bb)] = int(y*8/224)
-
-            #picTwo[xytoIndex(x,y)] = 55
+            picTwo[xytoIndex(x,y)] = 55
              
-        for i in x_array:
-            x_med = x_med+i
-
-        for i in y_array:
-            y_med = y_med+i
-
-        print(x_med,y_med)
         
-        #displayFrames(picTwo, 500, True, 1)
+        displayFrames(picTwo, 500, True, 1)
 
         piece_count = result['bounding_boxes_count']
         #piece_count = len(result['bounding_boxes'])
