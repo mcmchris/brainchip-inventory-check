@@ -218,11 +218,14 @@ def inferencing(model_file, queueOut):
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
             x = bb['x']
             y = 224 - bb['y']
-
-            x = int(x*8/224)
-            y = int(y*8/224)
-
-            picTwo[xytoIndex(x,y)] = 55
+            if med < 10:
+                x = x + int(x*8/224)
+                y = y + int(y*8/224)
+                med = med+1
+            else:
+                print(x,y)
+                picTwo[xytoIndex(x,y)] = 55
+                med = 0
         
         displayFrames(picTwo, 500, True, 1)
 
