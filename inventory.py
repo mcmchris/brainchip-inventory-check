@@ -37,7 +37,7 @@ inference_speed = 0
 power_consumption = 0
 piece_count = 0
 akida_fps = 0
-picTwo = [255]*64
+
 
 def ei_cube_check_overlap(c, x, y, width, height, confidence):
     is_overlapping = not ((c['x'] + c['width'] < x) or (c['y'] + c['height'] < y) or (c['x'] > x + width) or (c['y'] > y + height))
@@ -176,7 +176,6 @@ def inferencing(model_file, queueOut):
 
     picam2.start()
 
-    printit()
         
     resize_dim = (EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT)
 
@@ -214,7 +213,7 @@ def inferencing(model_file, queueOut):
         result = fill_result_struct_f32_fomo(pred, int(EI_CLASSIFIER_INPUT_WIDTH/8), int(EI_CLASSIFIER_INPUT_HEIGHT/8))
         
         #print(result)
-        
+        picTwo = [255]*64
   
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
@@ -229,7 +228,7 @@ def inferencing(model_file, queueOut):
             picTwo[xytoIndex(x,y)] = 55
              
         
-        
+        displayFrames(picTwo, 10, True, 1)
 
         piece_count = result['bounding_boxes_count']
         #piece_count = len(result['bounding_boxes'])
@@ -239,9 +238,7 @@ def inferencing(model_file, queueOut):
         if not queueOut.full():
             queueOut.put(img)
 
-def printit():
-  threading.Timer(0.5, printit).start()
-  displayFrames(picTwo, 500, False, 1)       
+        
         
 def gen_frames():
     #resize_stream = (640, 480)
@@ -381,7 +378,7 @@ if __name__ == '__main__':
 
     queueOut = Queue(maxsize = 24)
 
-    t2 = threading.Thread(target=inferencing, args=(model_file, queueOut))
+    t2 = threading.Thread(target=inferencing, args=(model_file,queueOut))
     t2.start()
     app.run(host = '0.0.0.0', port = 8080)
     t2.join()
