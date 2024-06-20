@@ -215,8 +215,8 @@ def inferencing(model_file, queueOut):
         
         #print(result)
         
-        picTwo = [255]*64
         
+
         for bb in result['bounding_boxes']:
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
             img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
@@ -242,7 +242,8 @@ def inferencing(model_file, queueOut):
 
 def printit():
   threading.Timer(5.0, printit).start()
-  displayFrames(picTwo, 500, True, 1)       
+  displayFrames(picTwo, 500, True, 1)    
+  picTwo = [255]*64   
         
 def gen_frames():
     #resize_stream = (640, 480)
