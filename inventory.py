@@ -219,8 +219,8 @@ def inferencing(model_file, queueOut):
             x = bb['x']
             y = 224 - bb['y']
             if med < 10:
-                x = x + int(x*8/224)
-                y = y + int(y*8/224)
+                x = int(x*8/224)
+                y = int(y*8/224)
                 med = med+1
             else:
                 print(x,y)
