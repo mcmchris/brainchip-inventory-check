@@ -224,7 +224,7 @@ def inferencing(model_file, queueOut):
                 med = med+1
             else:
                 print(x,y)
-                picTwo[xytoIndex(x,y)] = 55
+                #picTwo[xytoIndex(x,y)] = 55
                 med = 0
         
         displayFrames(picTwo, 500, True, 1)
