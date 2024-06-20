@@ -223,8 +223,8 @@ def inferencing(model_file, queueOut):
             x = bb['x']
             y = 224 - bb['y']
 
-            x_array[bb] = int(x*8/224)
-            y_array[bb] = int(y*8/224)
+            x_array[int(bb)] = int(x*8/224)
+            y_array[int(bb)] = int(y*8/224)
 
             #picTwo[xytoIndex(x,y)] = 55
              
