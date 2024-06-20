@@ -164,6 +164,7 @@ def inferencing(model_file, queueOut):
     global power_consumption
     global piece_count
     global akida_fps
+    global med
 
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
