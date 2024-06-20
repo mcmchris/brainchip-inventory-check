@@ -224,8 +224,8 @@ def inferencing(model_file, queueOut):
                 med = med+1
             else:
             #print(x,y)
-                xi = int(x/10)
-                yi = int(y/10)
+                xi = (x/10)
+                yi = (y/10)
                 picTwo[xytoIndex(xi,yi)] = 55
                 med = 0
         
