@@ -37,6 +37,7 @@ inference_speed = 0
 power_consumption = 0
 piece_count = 0
 akida_fps = 0
+med = 0
 
 def ei_cube_check_overlap(c, x, y, width, height, confidence):
     is_overlapping = not ((c['x'] + c['width'] < x) or (c['y'] + c['height'] < y) or (c['x'] > x + width) or (c['y'] > y + height))
