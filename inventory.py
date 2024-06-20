@@ -228,7 +228,7 @@ def inferencing(model_file, queueOut):
             picTwo[xytoIndex(x,y)] = 55
              
         
-        displayFrames(picTwo, 1, False, 1)
+        displayFrames(picTwo, 500, False, 1)
 
         piece_count = result['bounding_boxes_count']
         #piece_count = len(result['bounding_boxes'])
