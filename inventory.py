@@ -260,7 +260,7 @@ def get_inference_speed():
 def get_power_consumption():
     while True:
         yield "data:" + str(power_consumption) + "\n\n"
-        time.sleep(1)
+        time.sleep(5)
 
 def get_piece_count():
     while True:
