@@ -366,7 +366,7 @@ if __name__ == '__main__':
     scan_result = i2c.scan()
 
     print("I2C devices found: ", [hex(i) for i in scan_result])
-
+    time.sleep(1)
     matrix = 0x65
 
     if not matrix in scan_result:
