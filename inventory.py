@@ -255,22 +255,22 @@ def gen_frames():
 def get_inference_speed():
     while True:
         yield f"data:{inference_speed:.2f}\n\n"
-        time.sleep(1)
+        time.sleep(0.1)
 
 def get_power_consumption():
     while True:
         yield "data:" + str(power_consumption) + "\n\n"
-        time.sleep(5)
+        time.sleep(0.1)
 
 def get_piece_count():
     while True:
         yield "data:" + str(piece_count) + "\n\n"
-        time.sleep(1)
+        time.sleep(0.1)
 
 def get_fps():
     while True:
         yield "data:" + str(akida_fps) + "\n\n"
-        time.sleep(1)
+        time.sleep(0.1)
 
 def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
