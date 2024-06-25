@@ -191,7 +191,7 @@ def inferencing(model_file, queueOut):
         frame = picam2.capture_array()
 
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        img = img[160:323, 160:484]
+        img = img[86:323, 86:484]
         resized_img = cv2.resize(img, resize_dim)
         
         input_data = np.expand_dims(resized_img, axis=0)
