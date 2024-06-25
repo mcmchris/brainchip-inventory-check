@@ -23,6 +23,7 @@ normalSize = (640 , 640)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
+dotsResSize = (640, 480)
 
 app = Flask(__name__, static_folder='templates/assets')
 
@@ -155,8 +156,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = lowresSize[0]/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = lowresSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = dotsResSize[0]/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = dotsResSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
