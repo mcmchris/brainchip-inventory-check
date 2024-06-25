@@ -168,22 +168,10 @@ def inferencing(model_file, queueOut):
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
     picam2.start_preview(Preview.NULL)
     config = picam2.create_preview_configuration(main={"size": normalSize}, lores={"size": lowresSize, "format": "RGB888"})
-    for i in picam2.sensor_modes:
-        print("Sensor Mode: ", i)
 
-    #config = picam2.create_preview_configuration(lores={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
-    
     picam2.configure(config)
-    #print(picam2.video_configuration)
-    #stride = picam2.stream_configuration("lores")["stride"]
-    #stride = picam2.stream_configuration("main")["size"]
-
-    #picam2.post_callback = DrawRectangles
 
     picam2.start()
-
-        
-    resize_dim = (EI_CLASSIFIER_INPUT_WIDTH, EI_CLASSIFIER_INPUT_HEIGHT)
 
     while True:
         #frame = picam2.capture_array("lores")
