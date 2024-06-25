@@ -23,7 +23,7 @@ normalSize = (640 , 640)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
-dotsResSize = (224, 224)
+dotsResSize = (640, 480)
 
 app = Flask(__name__, static_folder='templates/assets')
 
@@ -241,7 +241,7 @@ def inferencing(model_file, queueOut):
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
-            queueOut.put(resized_img)
+            queueOut.put(img)
 
         
         
