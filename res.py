@@ -23,7 +23,7 @@ normalSize = (640 , 640)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
-dotsResSize = (640, 480)
+
 
 app = Flask(__name__, static_folder='templates/assets')
 
@@ -156,8 +156,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = dotsResSize[0]/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = dotsResSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = lowresSize[0]/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = lowresSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
@@ -221,8 +221,8 @@ def inferencing(model_file, queueOut):
         picTwo = [255]*64
   
         for bb in result['bounding_boxes']:
-            img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
-            img = cv2.circle(img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
+            resized_img = cv2.circle(resized_img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
+            resized_img = cv2.circle(resized_img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
 
             x = bb['x']
             y = 224 - bb['y']
@@ -241,7 +241,7 @@ def inferencing(model_file, queueOut):
         #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         
         if not queueOut.full():
-            queueOut.put(img)
+            queueOut.put(resized_img)
 
         
         
