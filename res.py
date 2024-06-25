@@ -172,7 +172,7 @@ def inferencing(model_file, queueOut):
         print("Sensor Mode: ", i)
 
     mode = picam2.sensor_modes[2]
-    config = picam2.create_preview_configuration(sensor={'output_size': mode[224,224], 'bit_depth': mode['bit_depth']})
+    config = picam2.create_preview_configuration(sensor={'output_size': [224,224], 'bit_depth': mode['bit_depth']})
     
     picam2.configure(config)
     #print(picam2.video_configuration)
