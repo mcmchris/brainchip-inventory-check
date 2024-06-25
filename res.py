@@ -171,7 +171,7 @@ def inferencing(model_file, queueOut):
     for i in picam2.sensor_modes:
         print("Sensor Mode: ", i)
 
-    mode = picam2.sensor_modes[1]
+    mode = picam2.sensor_modes[2]
     config = picam2.create_preview_configuration(sensor={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
     
     picam2.configure(config)
