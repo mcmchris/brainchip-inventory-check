@@ -193,7 +193,7 @@ def inferencing(model_file, queueOut):
 
         resized_img = cv2.resize(frame, resize_dim)
         
-        input_data = np.expand_dims(resized_img, axis=0)
+        input_data = np.expand_dims(resized_img, axis=2)
         
         start_time = time.perf_counter()
         logits = akida_model.predict(input_data)
