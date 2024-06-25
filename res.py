@@ -187,7 +187,7 @@ def inferencing(model_file, queueOut):
 
     while True:
         #frame = picam2.capture_array("lores")
-        img = picam2.capture_array("sensor")
+        img = picam2.capture_array()
 
         input_data = np.expand_dims(img, axis=0)
         
