@@ -187,9 +187,13 @@ def inferencing(model_file, queueOut):
 
     while True:
         #frame = picam2.capture_array("lores")
-        img = picam2.capture_array()
+        frame = picam2.capture_array()
 
-        input_data = np.expand_dims(img, axis=0)
+        #img = cv2.cvtColor(frame, cv2.COLOR_YUV420p2RGB)
+
+        resized_img = cv2.resize(frame, resize_dim)
+        
+        input_data = np.expand_dims(resized_img, axis=0)
         
         start_time = time.perf_counter()
         logits = akida_model.predict(input_data)
