@@ -172,7 +172,7 @@ def inferencing(model_file, queueOut):
     picam2.configure(config)
     #print(picam2.video_configuration)
     #stride = picam2.stream_configuration("lores")["stride"]
-    picam2.stream_configuration("main")["size"]
+    #picam2.stream_configuration("main")["size"]
     #picam2.post_callback = DrawRectangles
 
     picam2.start()
