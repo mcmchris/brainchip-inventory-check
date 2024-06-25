@@ -19,7 +19,7 @@ from flask import Flask, render_template, Response
 from picamera2 import MappedArray, Picamera2, Preview
 
 # Preview Resolution
-normalSize = (640 , 640)
+normalSize = (323 , 323)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
@@ -156,8 +156,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = lowresSize[0]/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = lowresSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = normalSize[0]/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = normalSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
