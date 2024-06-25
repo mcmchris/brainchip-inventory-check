@@ -169,7 +169,7 @@ def inferencing(model_file, queueOut):
     picam2.start_preview(Preview.NULL)
     #config = picam2.create_preview_configuration(main={"size": normalSize}, lores={"size": lowresSize, "format": "RGB888"})
     mode = picam2.sensor_modes[0]
-    config = picam2.create_preview_configuration(sensor={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
+    config = picam2.create_preview_configuration(lores={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
     picam2.configure(config)
     #print(picam2.video_configuration)
     #stride = picam2.stream_configuration("lores")["stride"]
