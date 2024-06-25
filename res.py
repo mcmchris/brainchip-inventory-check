@@ -171,7 +171,7 @@ def inferencing(model_file, queueOut):
         print("Sensor Mode: ", i)
 
     mode = picam2.sensor_modes[2]
-    config = picam2.create_preview_configuration(lores={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
+    config = picam2.create_preview_configuration(sensor={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
     
     picam2.configure(config)
     #print(picam2.video_configuration)
@@ -187,7 +187,7 @@ def inferencing(model_file, queueOut):
 
     while True:
         #frame = picam2.capture_array("lores")
-        img = picam2.capture_array("lores")
+        img = picam2.capture_array("sensor")
 
         input_data = np.expand_dims(img, axis=0)
         
