@@ -23,7 +23,7 @@ normalSize = (640 , 640)
 #normalSize = (1920 , 1080)
 # Model image size requeriment
 lowresSize = (224, 224)
-dotsResSize = (640, 480)
+dotsResSize = (224, 224)
 
 app = Flask(__name__, static_folder='templates/assets')
 
