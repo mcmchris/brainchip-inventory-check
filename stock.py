@@ -185,7 +185,7 @@ def inferencing(model_file, queueOut):
         #frame = picam2.capture_array("lores")
         img = picam2.capture_array("lores")
 
-        input_data = np.expand_dims(img, axis=1)
+        input_data = np.expand_dims(img, axis=0)
         
         start_time = time.perf_counter()
         logits = akida_model.predict(input_data)
