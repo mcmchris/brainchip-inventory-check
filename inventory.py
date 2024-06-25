@@ -187,7 +187,8 @@ def inferencing(model_file, queueOut):
         #cropped_img = frame[0:720, 280:280+720]
         #resized_img = cv2.resize(frame, resize_dim, interpolation = cv2.INTER_AREA)
         #grey = frame[:stride * lowresSize[1]].reshape((lowresSize[1], stride))
-        img = cv2.cvtColor(frame, cv2.COLOR_YUV420p2RGB)
+        #img = cv2.cvtColor(frame, cv2.COLOR_YUV420p2RGB)
+        img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         resized_img = cv2.resize(img, resize_dim)
         
