@@ -168,7 +168,7 @@ def inferencing(model_file, queueOut):
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
     picam2.start_preview(Preview.NULL)
     config = picam2.create_preview_configuration(main={"size": normalSize, "format": "RGB888"},
-                                                 lores={"size": normalSize, "format": "YUV420"})
+                                                 lores={"size": lowresSize, "format": "RGB888"})
     picam2.configure(config)
     #print(picam2.video_configuration)
     #stride = picam2.stream_configuration("lores")["stride"]
@@ -183,7 +183,7 @@ def inferencing(model_file, queueOut):
 
     while True:
         #frame = picam2.capture_array("main")
-        img = picam2.capture_array("main")
+        img = picam2.capture_array("lores")
         #cropped_img = frame[0:720, 280:280+720]
         #resized_img = cv2.resize(frame, resize_dim, interpolation = cv2.INTER_AREA)
         #grey = frame[:stride * lowresSize[1]].reshape((lowresSize[1], stride))
