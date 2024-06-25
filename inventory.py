@@ -171,8 +171,8 @@ def inferencing(model_file, queueOut):
                                                  lores={"size": normalSize, "format": "YUV420"})
     picam2.configure(config)
     #print(picam2.video_configuration)
-    stride = picam2.stream_configuration("lores")["stride"]
-    #picam2.stream_configuration("main")["size"]
+    #stride = picam2.stream_configuration("lores")["stride"]
+    stride = picam2.stream_configuration("main")["size"]
     picam2.configure(stride)
     #picam2.post_callback = DrawRectangles
 
