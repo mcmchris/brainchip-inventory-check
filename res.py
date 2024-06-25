@@ -168,18 +168,12 @@ def inferencing(model_file, queueOut):
     picam2 = Picamera2()
     #picam2.start_preview(Preview.DRM, x=0, y=0, width=1920, height=1080)
     picam2.start_preview(Preview.NULL)
-    for i in picam2.sensor_modes:
-        print("Sensor Mode: ", i)
 
     mode = picam2.sensor_modes[2]
-    config = picam2.create_preview_configuration(sensor={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
-    
-    picam2.configure(config)
-    #print(picam2.video_configuration)
-    #stride = picam2.stream_configuration("lores")["stride"]
-    #stride = picam2.stream_configuration("main")["size"]
 
-    #picam2.post_callback = DrawRectangles
+    config = picam2.create_preview_configuration(sensor={'output_size': mode['size'], 'bit_depth': mode['bit_depth']})
+    picam2.configure(config)
+
 
     picam2.start()
 
@@ -191,7 +185,7 @@ def inferencing(model_file, queueOut):
         frame = picam2.capture_array()
 
         img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        img = img[83:406, 160:483] #y:x (left upper corner) , y:x (right lower corner)
+        img = img[83:406, 160:483] #y:y+h (left upper corner) , x:x+w (right lower corner)
         
         resized_img = cv2.resize(img, resize_dim)
         
