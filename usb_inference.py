@@ -134,7 +134,7 @@ def fill_result_struct_f32_fomo(data, out_width, out_height):
 
 def get_webcams():
     port_ids = []
-    for port in range(5):
+    for port in range(8):
         print("Looking for a camera in port %s:" %port)
         camera = cv2.VideoCapture(port)
         if camera.isOpened():
