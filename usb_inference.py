@@ -159,8 +159,8 @@ def inferencing(model_file, queueOut):
     o_h, o_w, o_c = akida_model.output_shape
     scale_x = int(i_w/o_w)
     scale_y = int(i_h/o_h)
-    scale_out_x = lowresSize[0]/EI_CLASSIFIER_INPUT_WIDTH
-    scale_out_y = lowresSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
+    scale_out_x = normalSize[0]/EI_CLASSIFIER_INPUT_WIDTH
+    scale_out_y = normalSize[1]/EI_CLASSIFIER_INPUT_HEIGHT
 
     global inference_speed
     global power_consumption
@@ -197,9 +197,9 @@ def inferencing(model_file, queueOut):
         ret, frame = cap.read()
         
         if ret:
-            #resized_img = frame[83:307, 160:384]
+            resized_img = frame[83:307, 160:384]
 
-            resized_img = cv2.resize(frame, resize_dim)
+            #resized_img = cv2.resize(frame, resize_dim)
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
 
@@ -229,8 +229,8 @@ def inferencing(model_file, queueOut):
             #print(result)
 
             for bb in result['bounding_boxes']:
-                resized_img = cv2.circle(resized_img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
-                resized_img = cv2.circle(resized_img, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
+                frame = cv2.circle(frame, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] + int(bb['height']/2)) * scale_out_y)), 8, (57, 255, 20), 2)
+                frame = cv2.circle(frame, (int((bb['x'] + int(bb['width']/2)) * scale_out_x), int((bb['y'] +  int(bb['height']/2)) * scale_out_y)), 4, (255, 165, 0), 2)
                 
             
             piece_count = result['bounding_boxes_count']
@@ -239,7 +239,7 @@ def inferencing(model_file, queueOut):
             #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
             
             if not queueOut.full():
-                queueOut.put(resized_img)
+                queueOut.put(frame)
         else:
             return
         
