@@ -132,6 +132,21 @@ def fill_result_struct_f32_fomo(data, out_width, out_height):
 
     return result
 
+def get_webcams():
+    port_ids = []
+    for port in range(5):
+        print("Looking for a camera in port %s:" %port)
+        camera = cv2.VideoCapture(port)
+        if camera.isOpened():
+            ret = camera.read()[0]
+            if ret:
+                backendName =camera.getBackendName()
+                w = camera.get(3)
+                h = camera.get(4)
+                print("Camera %s (%s x %s) found in port %s " %(backendName,h,w, port))
+                port_ids.append(port)
+            camera.release()
+    return port_ids
 
 def inferencing(model_file, queueOut):
     akida_model = akida.Model(model_file)
@@ -153,7 +168,11 @@ def inferencing(model_file, queueOut):
     global piece_count
     global akida_fps
 
-    cap = cv2.VideoCapture('/dev/video8')
+    port_ids = get_webcams()
+
+    videoCaptureDeviceId = int(port_ids[0])
+
+    cap = cv2.VideoCapture(videoCaptureDeviceId)
     if cap.isOpened():
         ret = cap.read()[0]
         if ret:
@@ -178,7 +197,7 @@ def inferencing(model_file, queueOut):
         
         if ret:
             frame = frame[83:406, 160:483]
-            
+
             resized_img = cv2.resize(frame, resize_dim)
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
