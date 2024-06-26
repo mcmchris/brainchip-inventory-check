@@ -147,7 +147,7 @@ def get_webcams():
             camera.release()
     return port_ids
 
-def inferencing(model_file):
+def main(model_file):
     akida_model = akida.Model(model_file)
     devices = akida.devices()
     print(f'Available devices: {[dev.desc for dev in devices]}')
@@ -264,7 +264,7 @@ def get_fps():
 @app.route('/video_feed')
 def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
-    return Response(inferencing(sys.argv[1:]), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(main(sys.main[1:]), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/model_inference_speed')
 def model_inference_speed():
@@ -289,6 +289,5 @@ def index():
 if __name__ == '__main__':
     model_file = './model/akida_model.fbz'
 
-    inferencing(model_file = './model/akida_model.fbz')
-    app.run(host = '0.0.0.0', port = 8080)
+    app.run(host = '0.0.0.0', port = 8080, debug=True)
 
