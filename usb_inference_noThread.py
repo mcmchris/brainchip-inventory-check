@@ -147,8 +147,8 @@ def get_webcams():
             camera.release()
     return port_ids
 
-def main(model_file):
-    akida_model = akida.Model(model_file)
+def main(argv):
+    akida_model = akida.Model('./model/akida_model.fbz')
     devices = akida.devices()
     print(f'Available devices: {[dev.desc for dev in devices]}')
     device = devices[0]
@@ -287,7 +287,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    model_file = './model/akida_model.fbz'
-
     app.run(host = '0.0.0.0', port = 8080, debug=True)
 
