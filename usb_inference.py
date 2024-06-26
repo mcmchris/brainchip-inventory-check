@@ -197,9 +197,9 @@ def inferencing(model_file, queueOut):
         ret, frame = cap.read()
         
         if ret:
-            resized_img = frame[83:307, 160:384]
+            #resized_img = frame[83:307, 160:384]
 
-            #resized_img = cv2.resize(frame, resize_dim)
+            resized_img = cv2.resize(frame, resize_dim)
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
 
