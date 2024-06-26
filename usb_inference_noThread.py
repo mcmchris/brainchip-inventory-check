@@ -264,7 +264,7 @@ def get_fps():
 @app.route('/video_feed')
 def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
-    return Response(main(sys.main[1:]), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(main(sys.argv[1:]), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/model_inference_speed')
 def model_inference_speed():
