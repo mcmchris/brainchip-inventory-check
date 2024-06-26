@@ -9,7 +9,6 @@ import numpy as np
 from queue import Queue
 from scipy.special import softmax
 from flask import Flask, render_template, Response
-from picamera2 import MappedArray, Picamera2, Preview
 
 # Preview Resolution
 normalSize = (640 , 480)
