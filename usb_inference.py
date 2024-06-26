@@ -178,8 +178,8 @@ def inferencing(model_file, queueOut):
         ret = cap.read()[0]
         if ret:
             backendName =cap.getBackendName()
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+            #cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+            #cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
             w = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
             h = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
             fps = cap.get(cv2.CAP_PROP_FPS)
@@ -197,9 +197,9 @@ def inferencing(model_file, queueOut):
         ret, frame = cap.read()
         
         if ret:
-            #resized_img = frame[83:307, 160:384]
-            #resized_img = frame
-            resized_img = cv2.resize(frame, resize_dim)
+            resized_img = frame[83:307, 160:384]
+
+            #resized_img = cv2.resize(frame, resize_dim)
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
 
