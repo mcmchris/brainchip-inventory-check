@@ -203,7 +203,7 @@ def inferencing(model_file, queueOut):
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
 
-            input_data = np.expand_dims(resized_img, axis=0)
+            input_data = np.expand_dims(frame, axis=0)
             
             start_time = time.perf_counter()
             logits = akida_model.predict(input_data)
