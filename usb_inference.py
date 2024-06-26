@@ -169,8 +169,10 @@ def inferencing(model_file, queueOut):
     global akida_fps
 
     port_ids = get_webcams()
-
-    videoCaptureDeviceId = int(port_ids[0])
+    if len(port_ids) == 0:
+        raise Exception('Cannot find any webcams')
+    else:
+        videoCaptureDeviceId = int(port_ids[0])
 
     cap = cv2.VideoCapture(videoCaptureDeviceId)
     if cap.isOpened():
