@@ -289,6 +289,6 @@ def index():
 if __name__ == '__main__':
     model_file = './model/akida_model.fbz'
 
-    inferencing(model_file)
+    inferencing(model_file = './model/akida_model.fbz')
     app.run(host = '0.0.0.0', port = 8080)
 
