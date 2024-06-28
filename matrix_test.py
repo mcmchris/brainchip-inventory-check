@@ -81,11 +81,9 @@ if __name__ == "__main__":
         sys.exit()
 
     VID = getDeviceVID()
-    if VID != '0x86':
-        print("Could not detect led matrix!!!")
-        sys.exit()
+
     
-    print("Matrix init success")
+    print("Matrix init success: ", VID)
 
     stopDisplay()
 
