@@ -68,9 +68,9 @@ def xytoIndex(x, y):
     return index
  
 if __name__ == "__main__":
-
+    time.sleep(1)
     scan_result = i2c.scan()
-
+    time.sleep(1)
     print("I2C devices found: ", [hex(i) for i in scan_result])
 
     if not matrix in scan_result:
