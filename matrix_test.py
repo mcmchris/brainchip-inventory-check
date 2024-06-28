@@ -5,15 +5,7 @@ import time
 
 i2c = busio.I2C(board.SCL, board.SDA)
 
-scan_result = i2c.scan()
-
-print("I2C devices found: ", [hex(i) for i in scan_result])
-
-matrix = 0x65
-
-if not matrix in scan_result:
-    print("Could not find Seeed Matrix")
-    sys.exit()
+matrix = 0x65   # LED Matrix I2C Address
 
 def getDeviceVID():
     i2c.writeto(matrix, bytes([0x00]))
@@ -76,6 +68,15 @@ def xytoIndex(x, y):
     return index
  
 if __name__ == "__main__":
+
+    scan_result = i2c.scan()
+
+    print("I2C devices found: ", [hex(i) for i in scan_result])
+
+    if not matrix in scan_result:
+        print("Could not find Seeed Matrix")
+        sys.exit()
+
     VID = getDeviceVID()
     if VID != '0x86':
         print("Could not detect led matrix!!!")
