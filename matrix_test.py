@@ -83,7 +83,7 @@ if __name__ == "__main__":
     VID = getDeviceVID()
 
     
-    print("Matrix init success: ", VID)
+    print("Matrix init success: ")
 
     stopDisplay()
 
