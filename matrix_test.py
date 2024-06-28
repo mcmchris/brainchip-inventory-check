@@ -2,6 +2,7 @@ import sys
 import board
 import busio
 import time
+import os
 
 i2c = busio.I2C(board.SCL, board.SDA)
 
@@ -68,11 +69,13 @@ def xytoIndex(x, y):
     return index
  
 if __name__ == "__main__":
-    time.sleep(1)
-    scan_result = i2c.scan()
-    time.sleep(1)
-    print("I2C devices found: ", [hex(i) for i in scan_result])
 
+    os.system("i2cdetect -y 1") # this command scan and wakes up the I2C peripheral
+
+    scan_result = i2c.scan()
+
+    print("I2C devices found: ", [hex(i) for i in scan_result])
+    
     if not matrix in scan_result:
         print("Could not find Seeed Matrix")
         sys.exit()
