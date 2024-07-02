@@ -180,6 +180,8 @@ def inferencing(model_file, queueOut):
 
         input_data = np.expand_dims(img, axis=0)
         
+        print("Input_data size in bytes: ", sys.getsizeof(input_data))
+
         start_time = time.perf_counter()
         logits = akida_model.predict(input_data)
         end_time = time.perf_counter()
