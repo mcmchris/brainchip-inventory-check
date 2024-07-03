@@ -203,8 +203,6 @@ def inferencing(model_file, queueOut):
 
             #img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2RGB)
 
-            print("Image size in bytes: ", sys.getsizeof(resized_img))
-
             input_data = np.expand_dims(resized_img, axis=0)
 
             #print("Input_data size in bytes: ", sys.getsizeof(input_data))
