@@ -1,1 +1,1 @@
-# brainchip-inventory-check
+# Inventory Stock Tracker - FOMO - BrainChip AKD1000
