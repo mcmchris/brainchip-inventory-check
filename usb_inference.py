@@ -206,7 +206,7 @@ def inferencing(model_file, queueOut):
             input_data = np.expand_dims(resized_img, axis=0)
 
             #print("Input_data size in bytes: ", sys.getsizeof(input_data))
-            print("Input_data shape: ", np.shape(input_data))
+            #print("Input_data shape: ", np.shape(input_data))
             
 
             start_time = time.perf_counter()
